@@ -17,7 +17,7 @@ body,
   min-height: 0;
   overflow: hidden;
   background-color: var(--blue);
-  background-image: url('/assets/galaxy-background.jpg');
+  background-image: url('../assets/galaxy-background.jpg');
   background-size: cover;
   background-position: center top;
 }
