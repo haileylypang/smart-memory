@@ -1,0 +1,176 @@
+:root {
+  --blue: #111844;
+  --mid: #4b5694;
+  --light: #7288ae;
+  --pink: #eae0cf;
+  --border: rgba(17, 24, 68, 0.14);
+}
+
+body,
+.app { background: var(--blue); }
+html,
+body,
+#root { width: 100%; height: 100%; overflow: hidden; }
+.app {
+  width: 100%;
+  height: 100svh;
+  min-height: 0;
+  overflow: hidden;
+  background-color: var(--blue);
+  background-image: url('/assets/galaxy-background.jpg');
+  background-size: cover;
+  background-position: center top;
+}
+.brand h1 { color: #fff; }
+.brandIcon {
+  color: var(--pink);
+  background: color-mix(in srgb, var(--light) 22%, var(--blue));
+  border-color: color-mix(in srgb, var(--pink) 25%, transparent);
+}
+.brandIcon img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.levels { border-color: var(--pink); }
+.levels button {
+  color: var(--pink);
+  background: transparent;
+  border-right-color: var(--pink);
+}
+.levels button.selected {
+  color: var(--blue);
+  background: var(--pink);
+}
+.status h2 { color: var(--pink); }
+.status p,
+footer p { color: color-mix(in srgb, var(--pink) 72%, white); }
+.stat,
+.stat:last-child {
+  height: 56px;
+  color: #fff;
+  background: color-mix(in srgb, var(--mid) 48%, var(--blue));
+  border-color: color-mix(in srgb, var(--pink) 18%, transparent);
+}
+.stat small { color: color-mix(in srgb, var(--pink) 78%, white); }
+.stat strong { color: var(--pink); }
+.stat > span {
+  width: 28px;
+  height: 28px;
+  color: var(--pink);
+  background: color-mix(in srgb, var(--light) 28%, var(--blue));
+}
+.stat > span svg { width: 14px; height: 14px; }
+.board { background: var(--mid); }
+.roundBtn {
+  color: var(--pink);
+  background: color-mix(in srgb, var(--mid) 38%, var(--blue));
+  border-color: color-mix(in srgb, var(--pink) 22%, transparent) !important;
+}
+.start {
+  color: var(--blue);
+  background: var(--pink);
+}
+.start:active { background: #fff; }
+footer { border-top-color: color-mix(in srgb, var(--pink) 16%, transparent); }
+footer h3 { color: var(--pink); }
+.howIcon {
+  color: var(--pink);
+  background: color-mix(in srgb, var(--mid) 38%, var(--blue));
+}
+
+header { flex-wrap: wrap; }
+.game { min-height: 0; }
+.playRow { min-height: 0; flex-shrink: 0; }
+.board {
+  width: min(100%, calc((100svh - 500px) * var(--cols) / var(--rows)));
+  min-width: 174px;
+  aspect-ratio: var(--cols) / var(--rows);
+  justify-self: center;
+}
+.start:active { background: #4b5694; }
+.roundBtn,
+.howIcon,
+.stat > span { color: var(--pink); }
+
+.modalBackdrop {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(7, 11, 35, 0.78);
+  backdrop-filter: blur(8px);
+}
+.resultModal {
+  position: relative;
+  width: min(100%, 340px);
+  padding: 30px 24px 24px;
+  text-align: center;
+  border: 1px solid color-mix(in srgb, var(--pink) 28%, transparent);
+  border-radius: 22px;
+  color: var(--pink);
+  background: color-mix(in srgb, var(--mid) 38%, var(--blue));
+}
+.modalClose {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 10px;
+  color: var(--pink);
+  background: color-mix(in srgb, var(--light) 18%, transparent);
+}
+.modalClose svg { width: 18px; }
+.resultIcon {
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--blue);
+  background: var(--pink);
+}
+.resultIcon svg { width: 28px; }
+.resultLabel { margin: 0 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .12em; opacity: .72; }
+.resultModal h2 { margin: 0; font-size: 34px; letter-spacing: -1px; }
+.resultScore { margin: 18px 0 22px; font-size: 16px; }
+.resultScore strong { display: block; margin-top: 2px; font-size: 46px; line-height: 1; color: #fff; }
+.resultAction {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 12px;
+  color: var(--blue);
+  background: var(--pink);
+  font: 650 15px inherit;
+}
+.resultAction svg { width: 17px; }
+
+@media (max-height: 760px) {
+  .status { margin-top: 14px; }
+  .levels { margin-top: 12px; height: 40px; }
+  .levels button { height: 40px; }
+  .playRow { margin-top: 10px; }
+  .stat { height: 52px; }
+  .controls { margin-top: 10px; }
+  footer { margin-top: 10px; padding-top: 9px; }
+  .board { width: min(100%, calc((100svh - 410px) * var(--cols) / var(--rows))); }
+}
+
+@media (max-height: 650px) {
+  footer { display: none; }
+  .status p { display: none; }
+  .board { width: min(100%, calc((100svh - 340px) * var(--cols) / var(--rows))); }
+}
+
+@media (min-width: 700px) {
+  body { background: #080c24; }
+  .app { border-color: color-mix(in srgb, var(--pink) 15%, transparent); }
+}
