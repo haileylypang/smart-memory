@@ -1,0 +1,17 @@
+{
+  "name": "Smart Memory",
+  "short_name": "Memory",
+  "description": "A musical sequence memory game.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#111844",
+  "theme_color": "#111844",
+  "icons": [
+    {
+      "src": "./assets/smart-memory-logo-256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
