@@ -4,14 +4,14 @@ import {Music2, Volume2, VolumeX, RotateCcw, Play, Trophy, ChartNoAxesColumnIncr
 import './styles.css';
 import './mobile.css';
 
-const LEVELS={easy:{label:'Easy',count:9,speed:1250,cols:3},medium:{label:'Medium',count:12,speed:1000,cols:3},hard:{label:'Hard',count:9,speed:500,cols:3}};
+const LEVELS={easy:{label:'Easy',count:9,speed:1000,cols:3},medium:{label:'Medium',count:9,speed:500,cols:3},hard:{label:'Hard',count:9,speed:250,cols:3}};
 const NOTES=[261.63,293.66,329.63,349.23,392,440,493.88,523.25,587.33,659.25,698.46,783.99];
 const sleep=(ms)=>new Promise(r=>setTimeout(r,ms));
 
 function App(){
  const [level,setLevel]=useState('easy'),[status,setStatus]=useState('ready'),[round,setRound]=useState(0),[best,setBest]=useState(()=>+localStorage.getItem('smart-memory-best')||0),[sequence,setSequence]=useState([]),[input,setInput]=useState([]),[active,setActive]=useState(null),[muted,setMuted]=useState(false);
  const run=useRef(0),audio=useRef(null),winSound=useRef(null),loseSound=useRef(null); const config=LEVELS[level];
- useEffect(()=>{winSound.current=new Audio(`${import.meta.env.BASE_URL}audio/win.mp3`);loseSound.current=new Audio(`${import.meta.env.BASE_URL}audio/lose.mp3`);winSound.current.volume=.25;loseSound.current.volume=0},[]);
+ useEffect(()=>{winSound.current=new Audio(`${import.meta.env.BASE_URL}audio/win.mp3`);loseSound.current=new Audio(`${import.meta.env.BASE_URL}audio/lose.mp3`);winSound.current.volume=.25;loseSound.current.volume=.125},[]);
  useEffect(()=>()=>{run.current++},[]);
  const tone=(i,d=240)=>{if(muted)return; const C=window.AudioContext||window.webkitAudioContext; audio.current ||= new C(); const ctx=audio.current,o=ctx.createOscillator(),g=ctx.createGain(); o.type='sine';o.frequency.value=NOTES[i];g.gain.setValueAtTime(.0001,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.64,ctx.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+d/1000);o.connect(g).connect(ctx.destination);o.start();o.stop(ctx.currentTime+d/1000+.03)};
  const show=async(seq,token)=>{setStatus('watch');setInput([]);await sleep(450);for(const n of seq){if(token!==run.current)return;setActive(n);tone(n,Math.min(360,config.speed*.48));await sleep(config.speed*.58);setActive(null);await sleep(config.speed*.22)}if(token===run.current)setStatus('turn')};
